@@ -97,7 +97,7 @@ export const AddAnimeToCollection = ({
                 }{
                   !isSelectExisting &&
                   <span css={styles.content.addNewBtn} onClick={toggleSelect}>
-                    Selecting existing
+                    Select existing collection
                   </span>
                 }
               </>
