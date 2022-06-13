@@ -8,6 +8,10 @@ const styles = css(`
     font-family: 'DM Sans', sans-serif
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   a {
     color: inherit;
     text-decoration: none;

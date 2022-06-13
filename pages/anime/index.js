@@ -3,6 +3,7 @@ import * as service from '../../lib/services'
 import styles from '../../styles/anime.style'
 import Link from 'next/link'
 import Head from 'next/head'
+import { Scroll } from '../../components'
 
 export default function AnimeList({ data }) {
   if (!data) {
@@ -81,6 +82,7 @@ export default function AnimeList({ data }) {
         {animeList}
       </div>
       {pagination()}
+      <Scroll />
     </>
   )
 }

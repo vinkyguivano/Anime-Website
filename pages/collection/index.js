@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import styles from '../../styles/collection.style'
 import { useState, useEffect } from 'react'
-import { Button, Modal } from '../../components'
+import { Button, Modal, Scroll } from '../../components'
 import Helper from '../../lib/helper'
 
 export default function Collection() {
@@ -71,7 +71,7 @@ export default function Collection() {
   }
 
   const handleEditCollection = () => {
-    if(!validateError(selectedCollection.name)){
+    if (!validateError(selectedCollection.name)) {
       if (selectedCollection.name !== collections[selectedCollection.idx].name) {
         const res = service.Collection.updateOne(selectedCollection.idx, selectedCollection.name)
         if (!res || res?.error) {
@@ -154,6 +154,7 @@ export default function Collection() {
         isError={modal.type === 'add' ? validateError(inputValue) : validateError(selectedCollection.name)}
         errorMsg={errorMsg}
         handleSubmit={modal.type === 'add' ? handleAddCollection : handleEditCollection} />
+      <Scroll />
     </>
   )
 }

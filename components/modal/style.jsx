@@ -39,10 +39,10 @@ const styles = {
     btnGroup: css({
       textAlign: 'center',
       button :{
-        '&:first-child':{
+        '&:first-of-type':{
            marginRight: 5
         },
-        '&:nth-child(2)':{
+        '&:nth-of-type(2)':{
             marginLeft: 5
         }      
       }
