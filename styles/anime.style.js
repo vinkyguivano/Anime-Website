@@ -37,61 +37,6 @@ const styles = {
       gridTemplateColumns: 'repeat(5, 1fr)'
     },
   }),
-  card: {
-    container: css({
-      maxWidth: '100%',
-      boxShadow: '0 0 10px 1px #999',
-      borderRadius: '.4rem',
-      overflow: 'hidden',
-      cursor: 'pointer',
-      backgroundColor: 'white',
-      position: 'relative',
-      '&:hover': {
-        '& #description': {
-          opacity: .8
-        }
-      }
-    }),
-    image: css({
-      width: '100%',
-      aspectRatio: '3 / 4',
-      backgroundColor: '#444'
-    }),
-    title: css({
-      padding: '1rem',
-      minHeight: '3rem',
-      textAlign: 'center',
-      fontSize: '.85rem',
-      fontWeight: 800,
-      lineHeight: 1.5,
-      '@media(max-width: 360px)': {
-        fontSize: '.75rem'
-      },
-    }),
-    description: css({
-      backgroundColor: 'black',
-      opacity: 0,
-      transition: '.3s',
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      right: 0,
-      margin: 'auto',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      span: {
-        color: 'rgba(255,255,255,1)',
-        display: 'inline-block',
-        width: '80%',
-        whiteSpace: 'nowrap',
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        display: 'box',
-      },
-    })
-  },
   paginate: {
     container: css({
       padding: '2rem 0 1rem',

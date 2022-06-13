@@ -3,7 +3,7 @@ import * as service from '../../lib/services'
 import styles from '../../styles/anime.style'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Scroll } from '../../components'
+import { Scroll, Card } from '../../components'
 
 export default function AnimeList({ data }) {
   if (!data) {
@@ -54,19 +54,8 @@ export default function AnimeList({ data }) {
     )
   }
 
-  const animeList = animes.map((anime) => {
-    const { id, title, coverImage, description } = anime
-    return (
-      <Link href={`/anime/${anime.id}`} key={id} passHref>
-        <a css={styles.card.container}>
-          <img css={styles.card.image} src={coverImage.large} alt={"anime title"} />
-          <div css={styles.card.title}>{title.english || title.native}</div>
-          <div css={styles.card.description} id="description">
-            <span dangerouslySetInnerHTML={{ __html: description?.slice(0, 200) }}></span>
-          </div>
-        </a>
-      </Link>
-    )
+  const animeList = animes.map((anime, i) => {
+    return <Card.Home anime={anime} key={i}/>
   })
 
   return (

@@ -1,10 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import * as service from '../../lib/services'
-import Link from 'next/link'
 import Head from 'next/head'
 import styles from '../../styles/collection.style'
 import { useState, useEffect } from 'react'
-import { Button, Modal, Scroll } from '../../components'
+import { Button, Modal, Scroll, Card } from '../../components'
 import Helper from '../../lib/helper'
 
 export default function Collection() {
@@ -98,22 +97,14 @@ export default function Collection() {
   const collectionList = collections.map((c, i) => {
     const image = c.animes?.length > 0 ? c.animes[0].coverImage.large : '/no-image.jpg'
     return (
-      <div css={styles.card.container} key={i}>
-        <Link href={`/collection/${Helper.toSlug(c.name)}`} passHref>
-          <a><img css={styles.card.image} src={image} alt={"cover image"} /> </a>
-        </Link>
-        <div css={styles.card.title}>
-          {c.name}
-        </div>
-        <div css={styles.card.btnGroup}>
-          <Button.Main red medium css={styles.card.btnDelete} onClick={() => { handleModal.open('delete'); setSelectedCollection({ name: c.name, idx: i }) }}>
-            Delete
-          </Button.Main>
-          <Button.Main green medium css={styles.card.btnUpdate} onClick={() => { handleModal.open('update'); setSelectedCollection({ name: c.name, idx: i }) }}>
-            Update
-          </Button.Main>
-        </div>
-      </div>
+      <Card.Secondary
+        handleDelete={() => { handleModal.open('delete'); setSelectedCollection({ name: c.name, idx: i }) }} 
+        handleEdit={ () => { handleModal.open('update'); setSelectedCollection({ name: c.name, idx: i }) }}
+        key={i}
+        image={image}
+        title={c.name}
+        link={`/collection/${Helper.toSlug(c.name)}`}
+        />
     )
   })
 
@@ -138,12 +129,13 @@ export default function Collection() {
           </div>
         }
       </div>
-      <Modal.DeleteCollection
+      <Modal.Delete
         isOpen={modal.type === 'delete' && modal.isOpen}
         handleClose={handleModal.close}
-        collectionName={selectedCollection.name}
+        title={"Delete Collection"}
+        itemName={selectedCollection.name}
         handleDelete={handleDeleteCollection} />
-      <Modal.AddOrEditCollection
+      <Modal.AddOrEdit
         isOpen={(modal.type === 'add' || modal.type === 'update') && modal.isOpen}
         handleChange={handleInputChange}
         value={modal.type === 'add' ? inputValue : selectedCollection.name}

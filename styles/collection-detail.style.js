@@ -1,25 +1,23 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react'
 
 const styles = {
-  header: {
-    container:css({
-      width: 'fit-content',
-      margin: '0 auto 3rem'
-    }),
-    title: css({
-      fontWeight: 800,
-      fontSize: '2.5rem',
-      textAlign: 'center',
-      fontFamily: 'Ubuntu Mono',
-    }),
-    blackBox: css({
-      backgroundColor: '#111',
-      height: '.5rem',
-      borderRadius: '1rem',
-      marginTop: 20
-    })
-  },
-  container: css({
+  nameHeader: css({
+    width: '100%'
+  }),
+  nameText: css({
+    fontSize: '2.5rem',
+    fontWeight: 'bold',
+    fontFamily: 'Ubuntu Mono',
+    lineHeight: 1.5,
+    paddingBottom: 8,
+    borderBottom : '4px solid black'
+  }),
+  listHeader: css({
+    marginTop: '1.5rem',
+    textAlign: 'center',
+    fontSize: '1.5rem',
+  }),
+  listContainer: css({
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '1.5rem',
@@ -42,11 +40,6 @@ const styles = {
     textAlign: 'center',
     fontSize: 16
   }),
-  btnWrapper: css({
-    textAlign: 'center',
-    marginBottom: '1rem',
-    marginTop: '-10px'
-  })
 }
 
 export default styles

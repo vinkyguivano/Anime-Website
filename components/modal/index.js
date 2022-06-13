@@ -138,7 +138,7 @@ export const AddAnimeToCollection = ({
   )
 }
 
-export const DeleteCollection = ({ isOpen, handleClose, collectionName, handleDelete }) => {
+export const Delete = ({ isOpen, handleClose, itemName, handleDelete, title }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -148,10 +148,10 @@ export const DeleteCollection = ({ isOpen, handleClose, collectionName, handleDe
       style={customStyles}>
       <div>
         <div css={styles.header.container}>
-          <h3>Delete collection</h3>
+          <h3>{title}</h3>
         </div>
         <div css={styles.content.container}>
-          <p>Are you sure want to delete <b>{collectionName}</b> ? The action can't be undone once it's deleted!</p>
+          <p>Are you sure want to delete <b>{itemName}</b> ? The action can't be undone once it's deleted!</p>
           <div css={styles.delete.btnGroup}>
             <Button.Main green onClick={handleDelete}>
               Yes
@@ -166,7 +166,7 @@ export const DeleteCollection = ({ isOpen, handleClose, collectionName, handleDe
   )
 }
 
-export const AddOrEditCollection = ({
+export const AddOrEdit = ({
   isOpen,
   handleClose,
   value,

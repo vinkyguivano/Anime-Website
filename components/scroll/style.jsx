@@ -11,9 +11,10 @@ const styles = {
     transition: '.4s',
     cursor: 'pointer',
     zIndex: 100,
+    boxShadow: '0px 0px 6px #555',
     i: {
       fontSize: '1.5rem'
-    }
+    },
   })
 }
 
