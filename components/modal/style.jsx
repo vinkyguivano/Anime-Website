@@ -34,6 +34,19 @@ const styles = {
       textDecoration: 'underline',
       display: 'inline-block'
     })
+  },
+  delete: {
+    btnGroup: css({
+      textAlign: 'center',
+      button :{
+        '&:first-child':{
+           marginRight: 5
+        },
+        '&:nth-child(2)':{
+            marginLeft: 5
+        }      
+      }
+    })
   }
 }
 

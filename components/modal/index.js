@@ -16,6 +16,7 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     maxWidth: '90%',
+    minWidth: '40%',
     alignItems: 'center',
     display: 'flex'
   },
@@ -120,15 +121,96 @@ export const AddAnimeToCollection = ({
                 </>
               )
           }
-          <Button.Main 
-            css={styles.content.button} 
+          <Button.Main
+            css={styles.content.button}
             onClick={(e) => {
               const res = handleSubmit(e)
-              if(res){
+              if (res) {
                 setSelectExisting(true)
               }
-            }} 
+            }}
             {...checkError() && { disabled: true }}>
+            <div>Submit</div>
+          </Button.Main>
+        </div>
+      </div>
+    </Modal>
+  )
+}
+
+export const DeleteCollection = ({ isOpen, handleClose, collectionName, handleDelete }) => {
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+      onAfterOpen={() => document.body.style.overflow = 'hidden'}
+      onAfterClose={() => document.body.style.overflow = 'unset'}
+      style={customStyles}>
+      <div>
+        <div css={styles.header.container}>
+          <h3>Delete collection</h3>
+        </div>
+        <div css={styles.content.container}>
+          <p>Are you sure want to delete <b>{collectionName}</b> ? The action can't be undone once it's deleted!</p>
+          <div css={styles.delete.btnGroup}>
+            <Button.Main green onClick={handleDelete}>
+              Yes
+            </Button.Main>
+            <Button.Main red onClick={handleClose}>
+              No
+            </Button.Main>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  )
+}
+
+export const AddOrEditCollection = ({
+  isOpen,
+  handleClose,
+  value,
+  handleChange,
+  handleBlur,
+  type,
+  isTouched,
+  isError,
+  errorMsg,
+  handleSubmit
+}) => {
+
+  const showError = isTouched && isError
+
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={handleClose}
+      onAfterOpen={() => document.body.style.overflow = 'hidden'}
+      onAfterClose={() => document.body.style.overflow = 'unset'}
+      style={customStyles}>
+      <div style={{ width: '100%' }}>
+        <div css={styles.header.container}>
+          <h3>{type === 'add' ? 'Add' : 'Update'} Collection</h3>
+        </div>
+        <div css={styles.content.container}>
+          <p>Type your new collection name below </p>
+          <input
+            type="text"
+            className="form-control"
+            defaultValue={value}
+            onChange={(e) => handleChange(e.target.value)} 
+            onBlur={handleBlur}
+            placeholder={"Insert text here.."}
+            css={{ ...showError && styles.content.inputDanger }}/>
+          {
+            errorMsg && (
+              <span css={styles.content.errorText}>{errorMsg}</span>
+            )
+          }
+          <Button.Main
+            css={styles.content.button}
+            onClick={handleSubmit}
+            {...isError && { disabled: true }}>
             <div>Submit</div>
           </Button.Main>
         </div>
