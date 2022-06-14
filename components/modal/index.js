@@ -153,7 +153,7 @@ export const Delete = ({ isOpen, handleClose, itemName, handleDelete, title }) =
           <h3>{title}</h3>
         </div>
         <div css={styles.content.container}>
-          <p>Are you sure want to delete <b>{itemName}</b> ? The action can't be undone once it's deleted!</p>
+          <p>Are you sure want to delete <b>{itemName}</b> ? The action can&apos;t be undone once it&apos;s deleted!</p>
           <div css={styles.delete.btnGroup}>
             <Button.Main green onClick={handleDelete}>
               Yes

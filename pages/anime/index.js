@@ -6,10 +6,6 @@ import Head from 'next/head'
 import { Scroll, Card } from '../../components'
 
 export default function AnimeList({ data }) {
-  if (!data) {
-    return null
-  }
-
   const { media: animes, pageInfo } = data
 
   const { currentPage, lastPage, hasNextPage } = pageInfo
@@ -57,6 +53,10 @@ export default function AnimeList({ data }) {
   const animeList = animes.map((anime, i) => {
     return <Card.Home anime={anime} key={i}/>
   })
+
+  if (!data) {
+    return null
+  }
 
   return (
     <>

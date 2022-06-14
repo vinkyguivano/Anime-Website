@@ -8,10 +8,6 @@ import Helper from '../../lib/helper'
 import Link from 'next/link'
 
 export default function Collection({ data }) {
-  if (!data) {
-    return null
-  }
-
   const [showAll, setShowAll] = useState("")
   const [isDescShown, setDescShown] = useState(false)
   const [includedCollection, setIncludedCollection] = useState([])
@@ -141,6 +137,8 @@ export default function Collection({ data }) {
   useEffect(formatDesc, [isDescShown])
   useEffect(fetchCollectionsData, [])
 
+  if(!data) return null
+
   return (
     <>
       <Head>
@@ -149,7 +147,7 @@ export default function Collection({ data }) {
       <div css={styles.container}>
         <div>
           <div css={styles.cover.container}>
-            <img css={styles.cover.image} src={coverImage.large} />
+            <img css={styles.cover.image} src={coverImage.large} alt="anime cover" />
           </div>
           <div css={styles.cover.title}>{title.english || title.native}</div>
         </div>
