@@ -8,7 +8,7 @@ export const Home = ({ anime }) => {
   return (
     <Link href={`/anime/${id}`} passHref>
       <a css={styles.home.container}>
-        <img css={styles.home.image} src={coverImage.large} alt={"anime title"} />
+        <img css={styles.home.image} src={coverImage.large} alt={"anime cover"}/>
         <div css={styles.home.title}>{title.english || title.native}</div>
         <div css={styles.home.description} id="description">
           <span dangerouslySetInnerHTML={{ __html: description?.slice(0, 200) }}></span>
@@ -22,7 +22,7 @@ export const Secondary = ({ link, title, image, handleEdit, handleDelete }) => {
   return (
     <div css={styles.secondary.container}>
       <Link href={link} passHref>
-        <a><img css={styles.secondary.image} src={image} alt={"cover image"} /> </a>
+        <a><img css={styles.secondary.image} src={image} alt={"anime cover"} /> </a>
       </Link>
       <div css={styles.secondary.title}>
         {title}

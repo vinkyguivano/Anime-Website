@@ -5,7 +5,9 @@ import Select from 'react-select'
 import { Button } from '../../components'
 import { useState } from 'react'
 
-Modal.setAppElement("#__next")
+if(typeof document != 'undefined'){
+  Modal.setAppElement(document.getElementById("__next"))
+}
 
 const customStyles = {
   content: {
