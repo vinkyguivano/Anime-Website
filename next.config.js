@@ -9,7 +9,8 @@ const nextConfig = {
         permanent: true
       }
     ]
-  }
+  },
+  optimizeFonts: false
 }
 
 module.exports = nextConfig
