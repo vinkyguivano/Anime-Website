@@ -24,7 +24,7 @@ const styles = {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '1.5rem',
     padding: '1rem 0',
-    '@media(max-width: 300px)': {
+    '@media(max-width: 320px)': {
       gridTemplateColumns: 'repeat(1, 1fr)'
     },
     '@media(min-width: 600px)': {

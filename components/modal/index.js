@@ -190,7 +190,7 @@ export const AddOrEdit = ({
       style={customStyles}>
       <div style={{ width: '100%' }}>
         <div css={styles.header.container}>
-          <h3>{type === 'add' ? 'Add' : 'Update'} Collection</h3>
+          <h3>{type === 'add' ? 'Add' : 'Edit'} Collection</h3>
         </div>
         <div css={styles.content.container}>
           <p>Type your new collection name below </p>

@@ -8,7 +8,11 @@ const styles = {
     content: css({
       maxWidth: 1080,
       margin: 'auto',
-      padding: '6rem 2.5rem 5rem'
+      padding: '6rem 2rem 5rem',
+      '@media(min-width: 768px)' :{
+        paddingLeft: '2.5rem',
+        paddingRight: '2.5rem'
+      }
     })
   } 
 }

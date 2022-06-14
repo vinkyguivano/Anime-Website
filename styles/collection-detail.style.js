@@ -2,15 +2,24 @@ import { css } from '@emotion/react'
 
 const styles = {
   nameHeader: css({
-    width: '100%'
+    width: '100%',
+    paddingBottom: 3,
+    borderBottom : '4px solid black',
   }),
   nameText: css({
     fontSize: '2.5rem',
     fontWeight: 'bold',
     fontFamily: 'Ubuntu Mono',
     lineHeight: 1.5,
-    paddingBottom: 8,
-    borderBottom : '4px solid black'
+    i: {
+      fontSize: '2rem',
+      transition: '.3s',
+      cursor: 'pointer',
+      padding: 5,
+      '&:hover': {
+        backgroundColor: '#ddd'
+      }
+    }
   }),
   listHeader: css({
     marginTop: '1.5rem',
@@ -22,7 +31,7 @@ const styles = {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '1.5rem',
     padding: '1rem 0',
-    '@media(max-width: 350px)': {
+    '@media(max-width: 320px)': {
       gridTemplateColumns: 'repeat(1, 1fr)'
     },
     '@media(min-width: 600px)': {

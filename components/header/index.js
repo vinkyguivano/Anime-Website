@@ -24,13 +24,13 @@ export default function Header() {
           <div className="navbar-nav">
             <Link href={"/anime"}>
               <a
-                css={[style.navItem, pathname.includes("/anime") && style.active]}
+                css={[style.navItem, pathname === "/anime" && style.active]}
                 className="nav-item nav-link">
                 Anime List
               </a>
             </Link>
             <Link href={"/collection"}>
-              <a css={[style.navItem, pathname.includes("/collection") && style.active]} 
+              <a css={[style.navItem, pathname === "/collection" && style.active]} 
               className="nav-item nav-link">
                 My Collection</a>
             </Link>

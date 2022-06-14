@@ -5,12 +5,14 @@ import * as Service from '../../lib/services'
 import Helper from '../../lib/helper'
 import Head from 'next/head'
 import styles from "../../styles/collection-detail.style"
-import Link from "next/link"
-import { Modal, Button, Scroll, Card } from "../../components"
+import { Modal, Scroll, Card } from "../../components"
 
 export default function CollectionDetail() {
 
   const [collectionData, setCollectionData] = useState('')
+  const [collectionNameInput, setCollectionNameInput] = useState('')
+  const [isTouched, setIsTouched] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const [modal, setModal] = useState({
     type: 'delete',
     isOpen: false
@@ -24,6 +26,7 @@ export default function CollectionDetail() {
     if (nameSlug) {
       const res = Service.Collection.getOne(Helper.normalizeSlug(nameSlug))
       setCollectionData(res)
+      setCollectionNameInput(res.collection.name)
     }
   }
 
@@ -33,7 +36,10 @@ export default function CollectionDetail() {
     },
     close: () => {
       setModal(prev => ({ ...prev, isOpen: false }))
-
+      if(modal.type === 'update'){
+        setIsTouched(false)
+        setCollectionNameInput(collection.name)
+      }
     }
   }
 
@@ -41,9 +47,43 @@ export default function CollectionDetail() {
     handleModal.open('delete')
     setSelectedAnime(anime)
   }
-
+  
   const handleDeleteAnime = () => {
+    const res = Service.Collection.deleteOneAnime(index, selectedAnime)
+    if(res){
+      handleModal.close()
+      fetchCollectionData()
+    }
+  }
+  const handleEditModal = () => {
+    handleModal.open('update')
+  }
 
+  const handleInputChange = (val) => {
+    setCollectionNameInput(val)
+    if(errorMsg) setErrorMsg('')
+  }
+
+  const handleInputBlur = () => {
+    setIsTouched(true)
+  }
+
+  const handleUpdateSubmit = () => {
+    if(!isError()){
+      if(collectionNameInput.toLowerCase() !== collection.name.toLowerCase()){
+        const res = Service.Collection.updateOne(index, collectionNameInput)
+        if(!res || res?.error){
+          res?.error && setErrorMsg("Collection name has already been taken")
+          return
+        }
+        router.replace(`/collection/${Helper.toSlug(collectionNameInput)}`)
+      }
+      handleModal.close()
+    }
+  }
+
+  const isError = () => {
+    return !Helper.checkSpecialCharacter(collectionNameInput)
   }
 
   const animeList = collection?.animes?.length > 0 ? collection.animes.map((anime) => {
@@ -64,7 +104,7 @@ export default function CollectionDetail() {
     </div>
   )
 
-  useEffect(fetchCollectionData, [router.isReady])
+  useEffect(fetchCollectionData, [router.isReady, router.query.name])
 
   return (
     <>
@@ -72,7 +112,10 @@ export default function CollectionDetail() {
         <title>Anime Collection</title>
       </Head>
       <div css={styles.nameHeader}>
-        <h3 css={styles.nameText}>{collection?.name}</h3>
+        <h3 css={styles.nameText}>
+          {collection?.name}{' '} 
+          <i className="uil uil-edit" onClick={handleEditModal}></i>
+        </h3>
       </div>
       <p css={styles.listHeader}>Anime List</p>
       <div css={styles.listContainer}>
@@ -84,7 +127,20 @@ export default function CollectionDetail() {
         isOpen={modal.type === "delete" && modal.isOpen}
         handleClose={handleModal.close}
         itemName={selectedAnime.title?.english || selectedAnime.title?.native}
+        handleDelete={handleDeleteAnime}
       />
+      <Modal.AddOrEdit 
+       type={'update'}
+       isOpen={modal.type === "update" && modal.isOpen}
+       handleClose={handleModal.close}
+       value={collectionNameInput}
+       isTouched={isTouched}
+       handleBlur={handleInputBlur}
+       handleChange={handleInputChange}
+       handleSubmit={handleUpdateSubmit}
+       errorMsg={errorMsg}
+       isError={isError()}
+       />
     </>
   )
 }

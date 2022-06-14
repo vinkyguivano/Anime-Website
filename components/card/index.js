@@ -38,7 +38,7 @@ export const Secondary = ({ link, title, image, handleEdit, handleDelete }) => {
         {
           handleEdit && (
             <Button.Main green medium css={styles.secondary.btnUpdate} onClick={handleEdit}>
-              Update
+              Edit
             </Button.Main>
           )
         }
